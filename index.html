@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESTP.JP | 行動で語る人間たちの図鑑</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="badge">ESTP.JP</p>
+      <h1>行動で語る<br>人間たちの図鑑</h1>
+      <p class="lead">
+        考える前に、もう動いてる。<br>
+        ここは、いろんなESTPを集めた図鑑サイト。
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#zukan" class="btn primary">図鑑を見る</a>
+        <a href="#about" class="btn secondary">ESTPとは？</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section about">
+      <h2>ESTPってどんな人？</h2>
+      <p>
+        現場感、ノリ、対応力、勝負勘。<br>
+        じっと考えるより、動きながら答えを見つけるタイプ。
+      </p>
+      <p>
+        このサイトでは、ESTPをひとまとめにせず、<br>
+        いろんなキャラクターとして集めていきます。
+      </p>
+    </section>
+
+    <section id="zukan" class="section">
+      <div class="section-title">
+        <p class="badge">ESTP ZUKAN</p>
+        <h2>ESTP図鑑</h2>
+        <p>あなたの近くにも、たぶんいる。</p>
+      </div>
+
+      <div id="cardList" class="card-list"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-bg" id="modalBg"></div>
+
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">×</button>
+
+      <p id="modalTag" class="modal-tag"></p>
+      <h2 id="modalName"></h2>
+      <p id="modalCatch" class="modal-catch"></p>
+
+      <div class="detail-grid">
+        <div>
+          <h3>特徴</h3>
+          <p id="modalFeature"></p>
+        </div>
+        <div>
+          <h3>強み</h3>
+          <p id="modalStrong"></p>
+        </div>
+        <div>
+          <h3>弱点</h3>
+          <p id="modalWeak"></p>
+        </div>
+        <div>
+          <h3>取扱説明書</h3>
+          <p id="modalManual"></p>
+        </div>
+      </div>
+
+      <a id="shareBtn" class="share-btn" target="_blank" rel="noopener">
+        Xでシェア
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>ESTP.JP</p>
+    <p>いろんなESTPを集めました。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
