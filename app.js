@@ -290,10 +290,13 @@ function resetQuiz() {
   renderQuestion();
 }
 
-retryBtn.addEventListener("click", resetQuiz);
+if (retryBtn) {
+  retryBtn.addEventListener("click", resetQuiz);
+}
 
-renderQuestion();
-
+if (quizBox && resultBox && questionCount && questionText && answerList) {
+  renderQuestion();
+}
 function renderCards() {
   cardList.innerHTML = "";
 
