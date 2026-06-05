@@ -1,3 +1,14 @@
+function setHeroHeight() {
+  const height = window.innerHeight;
+  document.documentElement.style.setProperty("--hero-height", `${height}px`);
+}
+
+setHeroHeight();
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(setHeroHeight, 300);
+});
+
 const estpCards = [
   {
     name: "突破型ESTP",
