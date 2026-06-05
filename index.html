@@ -49,9 +49,10 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="#zukan" class="btn primary">図鑑を見る</a>
-      <a href="#about" class="btn secondary">ESTPとは？</a>
-    </div>
+  <a href="#diagnosis" class="btn primary">診断する</a>
+  <a href="#zukan" class="btn secondary">図鑑を見る</a>
+  <a href="#about" class="btn secondary">ESTPとは？</a>
+</div>
   </div>
 </header>
   
@@ -67,6 +68,37 @@
         いろんなキャラクターとして集めていきます。
       </p>
     </section>
+
+    <section id="diagnosis" class="section diagnosis">
+  <div class="section-title">
+    <p class="badge">ESTP CHECK</p>
+    <h2>あなたはどのESTP？</h2>
+    <p>直感で選べ。考えすぎたら負け。</p>
+  </div>
+
+  <div id="quizBox" class="quiz-box">
+    <p id="questionCount" class="question-count"></p>
+    <h3 id="questionText" class="question-text"></h3>
+    <div id="answerList" class="answer-list"></div>
+  </div>
+
+  <div id="resultBox" class="result-box hidden">
+    <p class="result-label">RESULT</p>
+    <h3 id="resultName"></h3>
+    <p id="resultCatch" class="result-catch"></p>
+
+    <div class="result-image-wrap">
+      <img id="resultImage" src="" alt="">
+    </div>
+
+    <p id="resultSummary" class="result-summary"></p>
+
+    <div class="result-actions">
+      <button id="retryBtn" class="btn secondary" type="button">もう一回やる</button>
+      <a id="resultShareBtn" class="btn primary" target="_blank" rel="noopener">Xでシェア</a>
+    </div>
+  </div>
+</section>
 
     <section id="zukan" class="section">
       <div class="section-title">
