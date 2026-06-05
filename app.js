@@ -161,14 +161,14 @@ function openDetail(card, index) {
   modalName.textContent = card.name;
   modalCatch.textContent = card.catch;
 
-if (card.image) {
-  modalImage.src = card.image;
-  modalImage.alt = card.name;
-  modalImage.parentElement.style.display = "block";
-} else {
-  modalImage.parentElement.style.display = "none";
-}
-  
+  if (card.image) {
+    modalImage.src = card.image;
+    modalImage.alt = card.name;
+    modalImage.parentElement.style.display = "block";
+  } else {
+    modalImage.parentElement.style.display = "none";
+  }
+
   modalFeature.textContent = card.feature;
   modalStrong.textContent = card.strong;
   modalWeak.textContent = card.weak;
@@ -179,23 +179,16 @@ if (card.image) {
   shareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 
   modal.classList.remove("hidden");
-
-  const modalImage = document.getElementById("modalImage");
-
-if (card.image) {
-  modalImage.src = card.image;
-  modalImage.alt = card.name;
-  modalImage.parentElement.style.display = "block";
-} else {
-  modalImage.parentElement.style.display = "none";
-}
 }
 
 function closeDetail() {
   modal.classList.add("hidden");
 }
 
-closeModal.addEventListener("click", closeDetail);
+if (closeModal) {
+  closeModal.addEventListener("click", closeDetail);
+}
+
 modalBg.addEventListener("click", closeDetail);
 
 document.addEventListener("keydown", (event) => {
