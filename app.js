@@ -144,7 +144,7 @@ const quizQuestions = [
       { text: "とりあえず現場を見る", type: 0 },
       { text: "周りに指示を出す", type: 6 },
       { text: "面白くなってきたと思う", type: 9 },
-      { text: "静かに状況を観察する", type: 11 }
+      { text: "まず原因をじっくり文章で整理する", type: "notEstp" }
     ]
   },
   {
@@ -152,8 +152,8 @@ const quizQuestions = [
     answers: [
       { text: "勝てそうな勝負を見つけた時", type: 5 },
       { text: "場が一気に盛り上がった時", type: 3 },
-      { text: "難しい相手を攻略できそうな時", type: 9 },
-      { text: "自分の技術がハマった時", type: 4 }
+      { text: "自分の技術がハマった時", type: 4 },
+      { text: "安全で予定通りに全部終わった時", type: "notEstp" }
     ]
   },
   {
@@ -162,7 +162,7 @@ const quizQuestions = [
       { text: "距離感近い", type: 8 },
       { text: "口は悪いけど優しい", type: 1 },
       { text: "ふざけてるけど見てる", type: 2 },
-      { text: "何考えてるか分からない", type: 11 }
+      { text: "考えすぎて動くのが遅い", type: "notEstp" }
     ]
   },
   {
@@ -171,7 +171,7 @@ const quizQuestions = [
       { text: "細かすぎるルール", type: 7 },
       { text: "長い説明", type: 4 },
       { text: "何も起きない平和すぎる時間", type: 9 },
-      { text: "空気が重すぎる場所", type: 10 }
+      { text: "急に予定を変えられること", type: "notEstp" }
     ]
   },
   {
@@ -180,7 +180,7 @@ const quizQuestions = [
       { text: "初速", type: 0 },
       { text: "面倒見", type: 1 },
       { text: "ノリ", type: 10 },
-      { text: "危機対応", type: 6 }
+      { text: "慎重な計画力", type: "notEstp" }
     ]
   },
   {
@@ -189,7 +189,7 @@ const quizQuestions = [
       { text: "一気に動く", type: 0 },
       { text: "好き勝手やる", type: 7 },
       { text: "勝ち筋を探す", type: 5 },
-      { text: "場の流れを作る", type: 10 }
+      { text: "まず手順書を作る", type: "notEstp" }
     ]
   },
   {
@@ -198,7 +198,43 @@ const quizQuestions = [
       { text: "普通にしてるだけで勘違いされる", type: 8 },
       { text: "からかいながら様子を見る", type: 2 },
       { text: "雑だけど行動で助ける", type: 1 },
-      { text: "自由がないと無理", type: 7 }
+      { text: "好きでも慎重すぎて動けない", type: "notEstp" }
+    ]
+  },
+  {
+    text: "遊びに誘われた。どうする？",
+    answers: [
+      { text: "面白そうなら即行く", type: 3 },
+      { text: "場所とノリ次第で決める", type: 7 },
+      { text: "誰が来るか見て勝ち筋を読む", type: 5 },
+      { text: "予定表を確認して数日考える", type: "notEstp" }
+    ]
+  },
+  {
+    text: "誰かが落ち込んでる。どうする？",
+    answers: [
+      { text: "雑に声かけつつ近くにいる", type: 1 },
+      { text: "茶化して空気を軽くする", type: 2 },
+      { text: "遊びに連れ出す", type: 3 },
+      { text: "長文で気持ちを整理してあげる", type: "notEstp" }
+    ]
+  },
+  {
+    text: "勝負で負けたら？",
+    answers: [
+      { text: "もう一回やる", type: 9 },
+      { text: "次の勝ち筋を探す", type: 5 },
+      { text: "悔しいけど笑いに変える", type: 10 },
+      { text: "かなり引きずって反省会する", type: "notEstp" }
+    ]
+  },
+  {
+    text: "仕事や作業で得意なのは？",
+    answers: [
+      { text: "現場対応", type: 6 },
+      { text: "実際に手を動かすこと", type: 4 },
+      { text: "その場で判断すること", type: 0 },
+      { text: "事前に細かく計画すること", type: "notEstp" }
     ]
   },
   {
@@ -207,13 +243,14 @@ const quizQuestions = [
       { text: "突破", type: 0 },
       { text: "勝負", type: 5 },
       { text: "自由", type: 7 },
-      { text: "観察", type: 11 }
+      { text: "安定", type: "notEstp" }
     ]
   }
 ];
 
 let currentQuestionIndex = 0;
 let quizScores = Array(estpCards.length).fill(0);
+let notEstpScore = 0;
 
 const quizBox = document.getElementById("quizBox");
 const resultBox = document.getElementById("resultBox");
@@ -242,7 +279,13 @@ function renderQuestion() {
     btn.textContent = answer.text;
 
     btn.addEventListener("click", () => {
-      quizScores[answer.type] += 1;
+     
+if (answer.type === "notEstp") {
+  notEstpScore += 1;
+} else {
+  quizScores[answer.type] += 1;
+}
+      
       currentQuestionIndex += 1;
 
       if (currentQuestionIndex < quizQuestions.length) {
@@ -265,6 +308,13 @@ function showResult() {
     }
   });
 
+  const topScore = quizScores[topIndex];
+
+  if (notEstpScore >= 3 && topScore <= 2) {
+    showNotEstpResult();
+    return;
+  }
+
   const result = estpCards[topIndex];
 
   quizBox.classList.add("hidden");
@@ -280,9 +330,25 @@ function showResult() {
   resultShareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(location.href)}`;
 }
 
+function showNotEstpResult() {
+  quizBox.classList.add("hidden");
+  resultBox.classList.remove("hidden");
+
+  resultName.textContent = "あなたESTPじゃないね";
+  resultCatch.textContent = "現場に飛び込む前に、まず考えすぎてる。";
+  resultImage.src = "images/not-estp.png";
+  resultImage.alt = "あなたESTPじゃないね";
+  resultSummary.textContent =
+    "慎重さ、計画性、安定志向がかなり強め。ESTP COLLECTIONに迷い込んだけど、たぶんあなたは観客席側の人間です。いや、別に悪くない。むしろESTPを止める係として必要。";
+
+  const shareText = `診断結果：あなたESTPじゃないね\n現場に飛び込む前に、まず考えすぎてる。\n#ESTPJP`;
+  resultShareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(location.href)}`;
+}
+
 function resetQuiz() {
   currentQuestionIndex = 0;
   quizScores = Array(estpCards.length).fill(0);
+  notEstpScore = 0;
 
   resultBox.classList.add("hidden");
   quizBox.classList.remove("hidden");
