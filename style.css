@@ -722,36 +722,37 @@ img {
   .hero {
     align-items: flex-start;
     padding-top: 72px;
-    min-height: 100svh;
-    height: 100svh;
+    height: var(--hero-height, 760px);
+    min-height: var(--hero-height, 760px);
   }
 
   .hero-inner {
     margin-left: 0;
   }
 
- .hero-visual {
-  right: -120px;
-  bottom: 0;
-  width: 160vw;
-  height: 70svh;
-  opacity: 0.5;
-  object-position: right bottom;
-  transform: translateZ(0);
-  will-change: transform;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.5) 24%,
-    black 55%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.5) 24%,
-    black 55%
-  );
-}
+  .hero-visual {
+    right: -120px;
+    bottom: 0;
+    width: 160vw;
+    height: calc(var(--hero-height, 760px) * 0.7);
+    opacity: 0.5;
+    object-position: right bottom;
+    object-fit: cover;
+    transform: translateZ(0);
+
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 24%,
+      black 55%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 24%,
+      black 55%
+    );
+  }
 
   h1 span:last-child {
     transform: translateX(4px);
