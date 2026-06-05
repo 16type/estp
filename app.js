@@ -137,6 +137,163 @@ const modalWeak = document.getElementById("modalWeak");
 const modalManual = document.getElementById("modalManual");
 const shareBtn = document.getElementById("shareBtn");
 
+const quizQuestions = [
+  {
+    text: "目の前でトラブル発生。まずどうする？",
+    answers: [
+      { text: "とりあえず現場を見る", type: 0 },
+      { text: "周りに指示を出す", type: 6 },
+      { text: "面白くなってきたと思う", type: 9 },
+      { text: "静かに状況を観察する", type: 11 }
+    ]
+  },
+  {
+    text: "一番テンションが上がる瞬間は？",
+    answers: [
+      { text: "勝てそうな勝負を見つけた時", type: 5 },
+      { text: "場が一気に盛り上がった時", type: 3 },
+      { text: "難しい相手を攻略できそうな時", type: 9 },
+      { text: "自分の技術がハマった時", type: 4 }
+    ]
+  },
+  {
+    text: "人からよく言われるのは？",
+    answers: [
+      { text: "距離感近い", type: 8 },
+      { text: "口は悪いけど優しい", type: 1 },
+      { text: "ふざけてるけど見てる", type: 2 },
+      { text: "何考えてるか分からない", type: 11 }
+    ]
+  },
+  {
+    text: "苦手なのはどれ？",
+    answers: [
+      { text: "細かすぎるルール", type: 7 },
+      { text: "長い説明", type: 4 },
+      { text: "何も起きない平和すぎる時間", type: 9 },
+      { text: "空気が重すぎる場所", type: 10 }
+    ]
+  },
+  {
+    text: "自分の強みを選ぶなら？",
+    answers: [
+      { text: "初速", type: 0 },
+      { text: "面倒見", type: 1 },
+      { text: "ノリ", type: 10 },
+      { text: "危機対応", type: 6 }
+    ]
+  },
+  {
+    text: "自由にやっていいと言われたら？",
+    answers: [
+      { text: "一気に動く", type: 0 },
+      { text: "好き勝手やる", type: 7 },
+      { text: "勝ち筋を探す", type: 5 },
+      { text: "場の流れを作る", type: 10 }
+    ]
+  },
+  {
+    text: "恋愛で近いのは？",
+    answers: [
+      { text: "普通にしてるだけで勘違いされる", type: 8 },
+      { text: "からかいながら様子を見る", type: 2 },
+      { text: "雑だけど行動で助ける", type: 1 },
+      { text: "自由がないと無理", type: 7 }
+    ]
+  },
+  {
+    text: "最後に選ぶなら？",
+    answers: [
+      { text: "突破", type: 0 },
+      { text: "勝負", type: 5 },
+      { text: "自由", type: 7 },
+      { text: "観察", type: 11 }
+    ]
+  }
+];
+
+let currentQuestionIndex = 0;
+let quizScores = Array(estpCards.length).fill(0);
+
+const quizBox = document.getElementById("quizBox");
+const resultBox = document.getElementById("resultBox");
+const questionCount = document.getElementById("questionCount");
+const questionText = document.getElementById("questionText");
+const answerList = document.getElementById("answerList");
+
+const resultName = document.getElementById("resultName");
+const resultCatch = document.getElementById("resultCatch");
+const resultImage = document.getElementById("resultImage");
+const resultSummary = document.getElementById("resultSummary");
+const retryBtn = document.getElementById("retryBtn");
+const resultShareBtn = document.getElementById("resultShareBtn");
+
+function renderQuestion() {
+  const question = quizQuestions[currentQuestionIndex];
+
+  questionCount.textContent = `QUESTION ${currentQuestionIndex + 1} / ${quizQuestions.length}`;
+  questionText.textContent = question.text;
+  answerList.innerHTML = "";
+
+  question.answers.forEach((answer) => {
+    const btn = document.createElement("button");
+    btn.className = "answer-btn";
+    btn.type = "button";
+    btn.textContent = answer.text;
+
+    btn.addEventListener("click", () => {
+      quizScores[answer.type] += 1;
+      currentQuestionIndex += 1;
+
+      if (currentQuestionIndex < quizQuestions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    answerList.appendChild(btn);
+  });
+}
+
+function showResult() {
+  let topIndex = 0;
+
+  quizScores.forEach((score, index) => {
+    if (score > quizScores[topIndex]) {
+      topIndex = index;
+    }
+  });
+
+  const result = estpCards[topIndex];
+
+  quizBox.classList.add("hidden");
+  resultBox.classList.remove("hidden");
+
+  resultName.textContent = result.name;
+  resultCatch.textContent = result.catch;
+  resultImage.src = result.image;
+  resultImage.alt = result.name;
+  resultSummary.textContent = result.summary;
+
+  const shareText = `私は「${result.name}」タイプでした。\n${result.catch}\n#ESTPJP`;
+  resultShareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(location.href)}`;
+}
+
+function resetQuiz() {
+  currentQuestionIndex = 0;
+  quizScores = Array(estpCards.length).fill(0);
+
+  resultBox.classList.add("hidden");
+  quizBox.classList.remove("hidden");
+
+  renderQuestion();
+}
+
+retryBtn.addEventListener("click", resetQuiz);
+
+renderQuestion();
+
 function renderCards() {
   cardList.innerHTML = "";
 
