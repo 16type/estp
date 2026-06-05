@@ -526,3 +526,122 @@ img {
   object-position: center 22%;
   display: block;
 }
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  margin-top: 80px;
+  padding: 70px 20px 28px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 212, 59, 0.18), transparent 32%),
+    linear-gradient(135deg, #07080c 0%, #101018 52%, #171106 100%);
+  border-top: 1px solid rgba(255, 230, 150, 0.14);
+}
+
+.footer::after {
+  content: "COLLECTION";
+  position: absolute;
+  right: -24px;
+  bottom: -34px;
+  font-size: clamp(70px, 16vw, 220px);
+  font-weight: 1000;
+  letter-spacing: -0.1em;
+  color: rgba(255, 230, 160, 0.035);
+  pointer-events: none;
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 212, 59, 0.5);
+  color: #ffd43b;
+  font-size: 12px;
+  font-weight: 1000;
+  letter-spacing: 0.18em;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.footer h2 {
+  margin: 0;
+  font-size: clamp(34px, 7vw, 72px);
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+  color: #fffaf0;
+}
+
+.footer-copy {
+  margin: 22px 0 0;
+  color: #c9c0ad;
+  line-height: 1.9;
+}
+
+.footer-links {
+  display: grid;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.footer-links a {
+  color: #fff7d6;
+  text-decoration: none;
+  font-weight: 900;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 230, 150, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.footer-links a:hover {
+  transform: translateX(6px);
+  background: rgba(255, 212, 59, 0.14);
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 44px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 230, 150, 0.12);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #8f8778;
+  font-size: 13px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 54px 20px 24px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
