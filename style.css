@@ -22,9 +22,33 @@ body {
   padding: 56px 20px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 214, 64, 0.5), transparent 28%),
-    radial-gradient(circle at 82% 72%, rgba(255, 171, 15, 0.34), transparent 34%),
-    linear-gradient(135deg, #07080c 0%, #11131c 48%, #211806 100%);
+    radial-gradient(circle at 18% 18%, rgba(255, 214, 64, 0.38), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(255, 171, 15, 0.22), transparent 34%),
+    linear-gradient(135deg, #050609 0%, #0b0d13 48%, #161007 100%);
+}
+.hero-visual {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(72vw, 1050px);
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.96;
+  z-index: 1;
+  pointer-events: none;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 18%,
+    black 42%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 18%,
+    black 42%
+  );
 }
 
 .hero-inner {
@@ -124,24 +148,7 @@ h1 span:last-child {
 }
 
 .floating-card {
-  position: absolute;
-  z-index: 1;
-  width: 170px;
-  height: 220px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 230, 150, 0.24);
-  background:
-    radial-gradient(circle at top, rgba(255, 212, 59, 0.22), transparent 42%),
-    rgba(10, 10, 14, 0.72);
-  color: rgba(255, 245, 200, 0.75);
-  font-weight: 1000;
-  letter-spacing: 0.12em;
-  box-shadow:
-    0 24px 80px rgba(0, 0, 0, 0.58),
-    inset 0 0 30px rgba(255, 212, 59, 0.1);
-  backdrop-filter: blur(10px);
+  display: none;
 }
 
 .card-a {
@@ -335,4 +342,41 @@ h1 span:last-child {
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 16px;
   align-items: stretch;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    align-items: flex-start;
+    padding-top: 72px;
+    min-height: 100vh;
+  }
+
+  .hero-inner {
+    margin-left: 0;
+  }
+
+  .hero-visual {
+    right: -120px;
+    bottom: 0;
+    width: 160vw;
+    height: 70vh;
+    opacity: 0.5;
+    object-position: right bottom;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 24%,
+      black 55%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.5) 24%,
+      black 55%
+    );
+  }
+
+  h1 span:last-child {
+    transform: translateX(4px);
+  }
 }
