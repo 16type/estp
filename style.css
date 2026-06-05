@@ -387,7 +387,26 @@ img {
 }
 
 .close-btn {
-  display: none;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 230, 150, 0.25);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff7d6;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 26px rgba(255, 212, 59, 0.12);
+}
+
+.close-btn:hover {
+  background: #ffd43b;
+  color: #111;
 }
 
 .modal-tag {
