@@ -129,46 +129,6 @@ h1 span:last-child {
   height: 200px;
   display: grid;
   place-items: center;
-  border-radius: 20px;
-  border: 1px solid rgba(245, 210, 138, 0.18);
-  background:
-    linear-gradient(145deg, rgba(255, 230, 170, 0.12), rgba(255,255,255,0.025)),
-    rgba(10, 10, 14, 0.58);
-  color: rgba(255, 238, 200, 0.68);
-  font-weight: 1000;
-  letter-spacing: 0.14em;
-  box-shadow:
-    0 24px 80px rgba(0, 0, 0, 0.55),
-    inset 0 0 28px rgba(245, 184, 61, 0.08);
-  backdrop-filter: blur(10px);
-}
-
-.card-a {
-  top: 18%;
-  right: 10%;
-  transform: rotate(7deg);
-}
-
-.card-b {
-  bottom: 14%;
-  right: 24%;
-  transform: rotate(-6deg);
-}
-
-.card-c {
-  top: 58%;
-  left: 7%;
-  transform: rotate(5deg);
-}
-
-
-.floating-card {
-  position: absolute;
-  z-index: 1;
-  width: 150px;
-  height: 200px;
-  display: grid;
-  place-items: center;
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background:
