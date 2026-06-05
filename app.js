@@ -157,6 +157,16 @@ function openDetail(card, index) {
   shareBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 
   modal.classList.remove("hidden");
+
+  const modalImage = document.getElementById("modalImage");
+
+if (card.image) {
+  modalImage.src = card.image;
+  modalImage.alt = card.name;
+  modalImage.parentElement.style.display = "block";
+} else {
+  modalImage.parentElement.style.display = "none";
+}
 }
 
 function closeDetail() {
