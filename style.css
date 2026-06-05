@@ -380,3 +380,7 @@ h1 span:last-child {
     transform: translateX(4px);
   }
 }
+
+img{
+  width: 100%;
+}
